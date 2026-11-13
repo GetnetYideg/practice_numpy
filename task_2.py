@@ -94,3 +94,42 @@ else: print("Not verified!, There is a missing value.")
 #     print("Missing values still exist.")
 # else:
 #     print("Verified! No missing values.")
+
+# Boolean filtering
+
+## Houses with an area greater than 100m^2
+big_houses = data[data[:, 0] > 100]
+print("\n\n Houses with 100 and greater area: \n", big_houses)
+
+## Houses with at least 3 bedrooms
+has_bed_houses = data[data[:, 1] >= 3]
+print("\n\n Houses with at least 3 bedrooms: \n", has_bed_houses)
+
+## Houses with prices above 250
+more_price = data[data[:, -1] > 250]
+print("\n\n House with more price: \n", more_price)
+
+## Houses with an area greater than 100 and prices above 250.
+more_price_area = data[((data[:, 0] > 100) & (data[:, -1] > 250))]
+print("\n\n House with more price and area: \n", more_price_area)
+
+## Houses with an area between 70 and 120 m^2
+between_area = data[((data[:, 0] > 70) & (data[:, 0] < 120))]
+print("\n\n House with area between 70 and 120: \n", between_area)
+
+# Feature Engineering
+
+## Price price per square meter
+area = replaced_data[:, 0]
+price = replaced_data[:, -1]
+price_per_square = price / area
+
+## Bedrooms per 100 m^2
+bedrooms = replaced_data[:, 1]
+bedrooms_per_100m2 = (bedrooms / area) * 100
+
+## Added those columns into data
+enriched_data = np.column_stack((replaced_data, price_per_square, bedrooms_per_100m2))
+print("\n\nAdded column to the data: \n", enriched_data)
+
+## Creating new features is essential for machine learning to improve predictions by giving additial information about each attribute.

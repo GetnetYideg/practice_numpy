@@ -166,3 +166,21 @@ standardized_data = np.column_stack((standardized_area, standardized_bedroom, st
 standardized_mean = np.mean(standardized_data, axis=0)
 standardized_std = np.std(standardized_data, axis=0)
 print("\n\nStandardized Data: \n", standardized_data, "\n\nStandardized mean: ", standardized_mean, "\n\nStandardized standard deviation: ", standardized_std)
+
+# Train/Test split
+X = replaced_data[:, :-1]
+Y = replaced_data[:, -1]
+print("\nAll features: \n", X, "\nPrice feature: \n", Y)
+rng = np.random.default_rng(seed=43)
+
+indices = rng.permutation(len(X))
+split_indices = int(len(X) * 0.8)
+
+train_split = indices[:split_indices]
+test_split = indices[split_indices:]
+
+x_train, x_test = X[train_split], X[test_split]
+y_train, y_test = Y[train_split], Y[test_split]
+
+print("\nTrain Data Features: \n", x_train, "\nTest Data Features: \n: ", x_test)
+print("\nTrain Data Targets: \n", y_train, "\nTest Data Target: 'n: ", y_test)

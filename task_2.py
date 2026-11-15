@@ -133,3 +133,36 @@ enriched_data = np.column_stack((replaced_data, price_per_square, bedrooms_per_1
 print("\n\nAdded column to the data: \n", enriched_data)
 
 ## Creating new features is essential for machine learning to improve predictions by giving additial information about each attribute.
+
+# Standardization   
+## standardize the area feature
+mean_area = np.mean(area)
+std_area = np.std(area)
+standardized_area = (area - mean_area) / std_area
+print(standardized_area)
+
+## standardize the bedroom feature
+mean_bedroom = np.mean(bedrooms)
+std_bedroom = np.std(bedrooms)
+standardized_bedroom = (bedrooms - mean_bedroom) / std_bedroom
+print(standardized_bedroom)
+
+## standardize the age feature
+age = replaced_data[:, 2]
+mean_age = np.mean(age)
+std_age = np.std(age)
+standardized_age = (age - mean_age) / std_age
+print(standardized_age)
+
+## standardized the distance feature
+distance = replaced_data[:, 3]
+mean_distance = np.mean(distance)
+std_distance = np.std(distance)
+standardized_distance = (distance - mean_distance) / std_distance
+print(standardized_distance)
+
+## merge all the standardized features into one array
+standardized_data = np.column_stack((standardized_area, standardized_bedroom, standardized_age,standardized_distance))
+standardized_mean = np.mean(standardized_data, axis=0)
+standardized_std = np.std(standardized_data, axis=0)
+print("\n\nStandardized Data: \n", standardized_data, "\n\nStandardized mean: ", standardized_mean, "\n\nStandardized standard deviation: ", standardized_std)

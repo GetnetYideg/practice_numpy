@@ -182,5 +182,16 @@ test_split = indices[split_indices:]
 x_train, x_test = X[train_split], X[test_split]
 y_train, y_test = Y[train_split], Y[test_split]
 
-print("\nTrain Data Features: \n", x_train, "\nTest Data Features: \n: ", x_test)
-print("\nTrain Data Targets: \n", y_train, "\nTest Data Target: 'n: ", y_test)
+print("\nTrain Data Features: \n", x_train, "\nTest Data Features: \n", x_test)
+print("\nTrain Data Targets: \n", y_train, "\nTest Data Target: \n", y_test)
+
+# Correlation Analysis
+correlation_matrix = np.corrcoef(replaced_data, rowvar=False)
+print('\nCorrelation Matrix: \n', correlation_matrix)
+
+## From this we can know that area and price have strong  positive correlation.
+## And also we can know that distance and price have strong negative correlation.
+
+## Correlation close to 1 means they have strong positive relation means that they are directly related.
+## Correlation close to -1 means they have strong negative relation means that they are inversly related.
+## A correlation close to zero means there is little or no linear relationship. However, the variables could still have a nonlinear relationship.

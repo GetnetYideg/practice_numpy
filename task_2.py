@@ -195,3 +195,8 @@ print('\nCorrelation Matrix: \n', correlation_matrix)
 ## Correlation close to 1 means they have strong positive relation means that they are directly related.
 ## Correlation close to -1 means they have strong negative relation means that they are inversly related.
 ## A correlation close to zero means there is little or no linear relationship. However, the variables could still have a nonlinear relationship.
+
+# Baseline prediction
+y_mean = np.mean(y_train)
+mae = np.mean(np.abs(y_test - y_mean))
+print(mae)

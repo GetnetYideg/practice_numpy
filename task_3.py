@@ -43,3 +43,32 @@ print(predict_y(10, 40)[0], "\t", predict_y(10, 40)[-1])
 ## the value of w changes the slope 
 ## the value of b shifts the line up or down 
 ## two different models can have the same slope but different predictions due to bias value defference
+
+def compute_dw (y_pred):
+    dw = np.mean(x * (y_pred - y)) * 2
+    return dw
+
+def compute_db (y_pred):
+    db = np.mean(y_pred - y) * 2
+    return db
+
+def compute_mse (y_pred):
+    mse = np.mean((y - y_pred) **2)
+    return mse
+
+def update_slope (w, b):
+    rate = 0.001
+    dw = compute_dw(predict_y(w, b))
+    new_w = w - (rate * dw)
+    return new_w
+
+def update_bias (w, b):
+    rate = 0.001
+    db = compute_db(predict_y(w, b))
+    new_b = b - (rate * db)
+    return new_b
+
+w = 0
+b = 0
+print("Old value of slope: ", w, "\nNew value of slope: ", update_slope(w, b))
+print("Old value of bias: ", b, "\nNew value of bias: ", update_bias(w, b))

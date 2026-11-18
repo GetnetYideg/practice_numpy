@@ -56,19 +56,36 @@ def compute_mse (y_pred):
     mse = np.mean((y - y_pred) **2)
     return mse
 
-def update_slope (w, b):
-    rate = 0.001
+rate = 0.001
+def update_slope_bias (w, b):
+
     dw = compute_dw(predict_y(w, b))
     new_w = w - (rate * dw)
-    return new_w
 
-def update_bias (w, b):
-    rate = 0.001
     db = compute_db(predict_y(w, b))
     new_b = b - (rate * db)
-    return new_b
+
+    return new_w, new_b
 
 w = 0
 b = 0
-print("Old value of slope: ", w, "\nNew value of slope: ", update_slope(w, b))
-print("Old value of bias: ", b, "\nNew value of bias: ", update_bias(w, b))
+new_w, new_b = update_slope_bias(w, b)
+print("Old value of slope: ", w, "\nNew value of slope: ", new_w)
+print("Old value of bias: ", b, "\nNew value of bias: ", new_b)
+
+def train_1000 (w, b):
+    for i in range(1000): 
+        y_pred = predict_y(w, b)
+        w, b = update_slope_bias(w, b)
+
+        if i % 100 == 0:
+            print("Epoch:", i, "MSE:", compute_mse(y_pred))
+    return w, b
+
+final_w, final_b = train_1000(w, b)
+
+print("Final weight:", final_w)
+print("Final bias:", final_b)
+
+final_predictions = predict_y(final_w, final_b)
+print("Final MSE:", compute_mse(final_predictions))

@@ -89,3 +89,17 @@ print("Final bias:", final_b)
 
 final_predictions = predict_y(final_w, final_b)
 print("Final MSE:", compute_mse(final_predictions))
+
+## Visualize the learning process
+print("Actual scores: ", y)
+print("Predicted scores: ", final_predictions)
+
+final_errors = y - final_predictions
+print("Prediction errors: ", final_errors)
+
+## The predictions on w = 5 and b = 40 is closer but not exact
+## gradient descent updates w and b repeatedly to get a closer prediction
+## A learning rate that's too large can cause:
+# - The model to jump over the minimum error point.
+# - The error to increase instead of decrease.
+# - Training to become unstable or even diverge.
